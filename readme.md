@@ -3,7 +3,7 @@
 PagerIndicatorBinder is a library that provides the ability to attach indicators to ViewPagers,
 so that the user may see their current position within the ViewPager.
 
-<img src="demo.gif" alt="Demo of basic indicators" style="height: 100px;"/>
+<img src="demo.gif" height="500px" />
 
 There are libraries out there who do the same thing. However, most of them do not offer much
 customization on these indicators, and also don't allow you to easily select the location of
