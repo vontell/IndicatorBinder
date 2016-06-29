@@ -15,7 +15,7 @@ import android.widget.ImageView;
  * @author Aaron Vontell
  * @version 0.1
  */
-public class PagerIndicatorBinder {
+public class IndicatorBinder {
 
     /**
      * Binds the viewPager to indicatorContainer, such that indicatorContainer has a list of

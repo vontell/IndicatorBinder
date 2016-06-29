@@ -1,6 +1,6 @@
-# PagerIndicatorBinder
+# IndicatorBinder
 
-PagerIndicatorBinder is a library that provides the ability to attach indicators to ViewPagers,
+IndicatorBinder is a library that provides the ability to attach indicators to ViewPagers,
 so that the user may see their current position within the ViewPager.
 
 <img src="demo.gif" height="500px" />
@@ -24,7 +24,7 @@ To create the indicators for a ViewPager, simply define in your layout a ViewPag
 based container that will hold your indicators. Then use the following lines of code to connect the
 ViewPager to the container:
 
-`PagerIndicatorBinder.bind(viewPager, viewGroup, R.drawable.selectedRes, R.drawable.unselectedRes);`
+`IndicatorBinder.bind(context, viewPager, viewGroup, R.drawable.selectedRes, R.drawable.unselectedRes);`
 
 This will populate the viewGroup with indicators, and presto! You have indicators for your ViewPager.
 

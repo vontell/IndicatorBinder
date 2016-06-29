@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.avontell.pagerindicatorbinder.ImageAdapter;
-import com.avontell.pagerindicatorbinder.PagerIndicatorBinder;
+import com.avontell.pagerindicatorbinder.IndicatorBinder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         int unselectedImage = R.drawable.indicator_unselected;
 
         // Bind the view pager to the indicatorContainer
-        PagerIndicatorBinder.bind(this,
+        IndicatorBinder.bind(this,
                                   viewPager,
                                   indicatorContainer,
                                   selectedImage,
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         // OPTIONAL: Attach more than one indicator container!
         LinearLayout alternateContainer = (LinearLayout) findViewById(R.id.indicator_alt);
-        PagerIndicatorBinder.bind(this,
+        IndicatorBinder.bind(this,
                                   viewPager,
                                   alternateContainer,
                                   selectedImage,

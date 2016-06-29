@@ -1,1 +1,1 @@
-include ':app', ':pagerindicatorbinder'
+include ':app', ':iindicatorbinder'
