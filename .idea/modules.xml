@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PagerIndicatorBinderExample.iml" filepath="$PROJECT_DIR$/PagerIndicatorBinderExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iindicatorbinder/iindicatorbinder.iml" filepath="$PROJECT_DIR$/iindicatorbinder/iindicatorbinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/indicatorbinder/iindicatorbinder.iml" filepath="$PROJECT_DIR$/indicatorbinder/iindicatorbinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/indicatorbinder/indicatorbinder.iml" filepath="$PROJECT_DIR$/indicatorbinder/indicatorbinder.iml" />
       <module fileurl="file://$PROJECT_DIR$/iindicatorbinder/pagerindicatorbinder.iml" filepath="$PROJECT_DIR$/iindicatorbinder/pagerindicatorbinder.iml" />
     </modules>
   </component>

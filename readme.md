@@ -11,12 +11,28 @@ the indicators. With PagerIndicatorBinder, one simply uses one method to bind a 
 ViewGroup that will hold the indicators, and is therefore very easy to use and open to
 modification.
 
+Also feel free to reference the sample application.
+
 ## Referencing the Library
 
 The library may be referenced by either downloading and importing the library directly, referencing
 it as a Maven dependency, or referencing it as a Gradle dependency.
 
-Put dependencies here
+1. Add the JitPack repository to your build file. Add it in your root build.gradle at the end of repositories:
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+2. Add the dependency
+```grrovy
+dependencies {
+        compile 'com.github.vontell:IndicatorBinder:0.1.1'
+}
+```
 
 ## Usage
 
@@ -27,6 +43,9 @@ ViewPager to the container:
 `IndicatorBinder.bind(context, viewPager, viewGroup, R.drawable.selectedRes, R.drawable.unselectedRes);`
 
 This will populate the viewGroup with indicators, and presto! You have indicators for your ViewPager.
+
+**NEW**: You can now add **text tabs** to your ViewPagers with this simple method (custom view coming soon):
+`IndicatorBinder.bindTextTabs(context, viewPager, tabContainer, tabViews, R.color.selectedBackgroundColor, R.color.unselectedBackgroundColor, R.color.selectedTextColor, R.color.unselectedTextColor);`
 
 NOTE: Full documentation can be found within the wiki!
 

@@ -4,9 +4,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.avontell.pagerindicatorbinder.ImageAdapter;
 import com.avontell.pagerindicatorbinder.IndicatorBinder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,13 +43,38 @@ public class MainActivity extends AppCompatActivity {
                                   selectedImage,
                                   unselectedImage);
 
-        // OPTIONAL: Attach more than one indicator container!
-        LinearLayout alternateContainer = (LinearLayout) findViewById(R.id.indicator_alt);
-        IndicatorBinder.bind(this,
-                                  viewPager,
-                                  alternateContainer,
-                                  selectedImage,
-                                  unselectedImage);
+        // EXAMPLE WITH TABS -----------------------------------------------------------------------
+
+        // Create each tab TextView
+        List<TextView> tabViews = new ArrayList<>();
+        tabViews.add(new TextView(this));
+        tabViews.add(new TextView(this));
+        tabViews.add(new TextView(this));
+        tabViews.add(new TextView(this));
+        tabViews.add(new TextView(this));
+        tabViews.get(0).setText("Tab 1");
+        tabViews.get(1).setText("Tab 2");
+        tabViews.get(2).setText("Tab 3");
+        tabViews.get(3).setText("Tab 4");
+        tabViews.get(4).setText("Tab 6");
+
+        // Set the requested colors
+        int selectedBackgroundColor = R.color.tabBackgroundSelected;
+        int selectedTextColor = R.color.tabTextSelected;
+        int unselectedBackgroundColor = R.color.tabBackgroundUnselected;
+        int unselectedTextColor = R.color.tabTextUnselected;
+
+        // Grab the LinearLayout
+        LinearLayout tabContainer = (LinearLayout) findViewById(R.id.tab_container);
+
+        IndicatorBinder.bindTextTabs(this,
+                                     viewPager,
+                                     tabContainer,
+                                     tabViews,
+                                     selectedBackgroundColor,
+                                     unselectedBackgroundColor,
+                                     selectedTextColor,
+                                     unselectedTextColor);
 
     }
 }

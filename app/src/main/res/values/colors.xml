@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="tabBackgroundSelected">#3f51b5</color>
+    <color name="tabBackgroundUnselected">#5c6bc0</color>
+    <color name="tabTextSelected">#FFFFFF</color>
+    <color name="tabTextUnselected">#FFFFFF</color>
+
 </resources>
