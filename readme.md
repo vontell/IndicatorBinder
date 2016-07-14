@@ -30,7 +30,7 @@ allprojects {
 2. Add the dependency
 ```grrovy
 dependencies {
-        compile 'com.github.vontell:IndicatorBinder:0.1.1'
+        compile 'com.github.vontell:IndicatorBinder:v0.1.1-alpha'
 }
 ```
 
