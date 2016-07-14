@@ -13,6 +13,8 @@ modification.
 
 Also feel free to reference the sample application.
 
+Documentation located at: [http://www.avontell.com/indbinder/documentation/index.html](http://www.avontell.com/indbinder/documentation/index.html)
+
 ## Referencing the Library
 
 The library may be referenced by either downloading and importing the library directly, referencing
@@ -47,7 +49,7 @@ This will populate the viewGroup with indicators, and presto! You have indicator
 **NEW**: You can now add **text tabs** to your ViewPagers with this simple method (custom view coming soon):
 `IndicatorBinder.bindTextTabs(context, viewPager, tabContainer, tabViews, R.color.selectedBackgroundColor, R.color.unselectedBackgroundColor, R.color.selectedTextColor, R.color.unselectedTextColor);`
 
-NOTE: Full documentation can be found within the wiki!
+NOTE: Full documentation can be found at [http://www.avontell.com/indbinder/documentation/index.html](http://www.avontell.com/indbinder/documentation/index.html)!
 
 ## License
 The MIT License (MIT)
