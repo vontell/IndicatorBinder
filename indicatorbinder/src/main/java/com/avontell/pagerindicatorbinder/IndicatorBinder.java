@@ -21,7 +21,7 @@ import java.util.List;
  * children. The position of the ViewPager will update the view
  * with the children such that the current position is indicated
  * @author Aaron Vontell
- * @version 0.1
+ * @version 0.2
  */
 public class IndicatorBinder {
 
