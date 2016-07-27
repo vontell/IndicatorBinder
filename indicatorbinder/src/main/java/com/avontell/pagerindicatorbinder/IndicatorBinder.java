@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
@@ -66,8 +67,8 @@ public class IndicatorBinder {
                             @DrawableRes final int indicatorOffResource) {
 
         // Load the indicator drawables
-        final Drawable selected = context.getResources().getDrawable(indicatorOnResource);
-        final Drawable unselected = context.getResources().getDrawable(indicatorOffResource);
+        final Drawable selected = ContextCompat.getDrawable(context, indicatorOnResource);
+        final Drawable unselected = ContextCompat.getDrawable(context, indicatorOffResource);
 
         // Load the container with indicators
         final int numItems = viewPager.getAdapter().getCount();
@@ -154,11 +155,11 @@ public class IndicatorBinder {
 
             // Set colors of the TextView
             if(i == viewPager.getCurrentItem()) {
-                tab.setBackgroundColor(context.getResources().getColor(backgroundSelectedColor));
-                tab.setTextColor(context.getResources().getColor(textSelectedColor));
+                tab.setBackgroundColor(ContextCompat.getColor(context, backgroundSelectedColor));
+                tab.setTextColor(ContextCompat.getColor(context, textSelectedColor));
             } else {
-                tab.setBackgroundColor(context.getResources().getColor(backgroundUnselectedColor));
-                tab.setTextColor(context.getResources().getColor(textUnselectedColor));
+                tab.setBackgroundColor(ContextCompat.getColor(context, backgroundUnselectedColor));
+                tab.setTextColor(ContextCompat.getColor(context, textUnselectedColor));
             }
 
             // Set Click Listeners of the tabs
@@ -186,11 +187,11 @@ public class IndicatorBinder {
                 for(int i = 0; i < tabViews.size(); i++){
                     TextView tab = (TextView) tabContainer.getChildAt(i);
                     if(i == position) {
-                        tab.setBackgroundColor(context.getResources().getColor(backgroundSelectedColor));
-                        tab.setTextColor(context.getResources().getColor(textSelectedColor));
+                        tab.setBackgroundColor(ContextCompat.getColor(context, backgroundSelectedColor));
+                        tab.setTextColor(ContextCompat.getColor(context, textSelectedColor));
                     } else {
-                        tab.setBackgroundColor(context.getResources().getColor(backgroundUnselectedColor));
-                        tab.setTextColor(context.getResources().getColor(textUnselectedColor));
+                        tab.setBackgroundColor(ContextCompat.getColor(context, backgroundUnselectedColor));
+                        tab.setTextColor(ContextCompat.getColor(context, textUnselectedColor));
                     }
                 }
             }
