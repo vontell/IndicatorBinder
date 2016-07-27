@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,6 +27,26 @@ import java.util.List;
  */
 public class IndicatorBinder {
 
+    private boolean isProgressStyle = false;
+
+    /**
+     * Returns if the current indicator is set to progress style or not
+     * @return returns true or false
+     */
+    public boolean isProgressStyle() {
+        return isProgressStyle;
+    }
+
+    /**
+     * Set whether the indicators are set to selected as your swipe through the view pager or not
+     * Currently only setup to work with bind method
+     * Default is false
+     * @param progressStyle boolean for progress style
+     */
+    public void setProgressStyle(boolean progressStyle) {
+        isProgressStyle = progressStyle;
+    }
+
     /**
      * Binds the viewPager to indicatorContainer, such that indicatorContainer has a list of
      * indicators, all displaying the drawable at indicatorOffResource except for the ith child,
@@ -37,7 +59,7 @@ public class IndicatorBinder {
      * @param indicatorOnResource The drawable to display for indicators that are not selected
      * @param indicatorOffResource The drawable to display for the selected indicator
      */
-    public static void bind(@NonNull final Context context,
+    public IndicatorBinder bind(@NonNull final Context context,
                             @NonNull final ViewPager viewPager,
                             @NonNull final ViewGroup indicatorContainer,
                             @DrawableRes final int indicatorOnResource,
@@ -72,11 +94,12 @@ public class IndicatorBinder {
 
                 for(int i = 0; i < numItems; i++){
                     ImageView indicator = (ImageView) indicatorContainer.getChildAt(i);
-                    if(i == position){
-                        indicator.setImageDrawable(selected);
+
+                    if(isProgressStyle){
+                        indicator.setImageDrawable((i <= position) ? selected : unselected);
                     }
                     else {
-                        indicator.setImageDrawable(unselected);
+                        indicator.setImageDrawable((i == position) ? selected : unselected);
                     }
                 }
             }
@@ -86,7 +109,7 @@ public class IndicatorBinder {
 
             }
         });
-
+        return this;
     }
 
     /**
@@ -103,7 +126,7 @@ public class IndicatorBinder {
      * @param textSelectedColor The text color resource for a selected tab
      * @param textUnselectedColor The text color resource for an unselected tab
      */
-    public static void bindTextTabs(
+    public IndicatorBinder bindTextTabs(
             @NonNull final Context context,
             @NonNull final ViewPager viewPager,
             @NonNull final LinearLayout tabContainer,
@@ -148,7 +171,6 @@ public class IndicatorBinder {
             });
 
             tabContainer.addView(tab);
-
         }
 
         // Set listener for ViewPager changes
@@ -178,7 +200,7 @@ public class IndicatorBinder {
 
             }
         });
-
+        return this;
     }
 
     /**
