@@ -1,4 +1,5 @@
 # IndicatorBinder
+[![](https://jitpack.io/v/vontell/IndicatorBinder.svg)](https://jitpack.io/#vontell/IndicatorBinder)
 
 IndicatorBinder is a library that provides the ability to attach indicators to ViewPagers,
 so that the user may see their current position within the ViewPager.
