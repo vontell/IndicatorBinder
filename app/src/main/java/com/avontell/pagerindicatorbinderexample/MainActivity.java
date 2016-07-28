@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // EXAMPLE WITH BASIC DRAWABLE RESOURCES ---------------------------------------------------
+        // INCLUDES PROGRESS STYLE -----------------------------------------------------------------
 
         // Grab the views
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_one);
@@ -42,8 +43,23 @@ public class MainActivity extends AppCompatActivity {
                                   indicatorContainer,
                                   selectedImage,
                                   unselectedImage);
+
         // Set whether you want a progress style
         sample.setProgressStyle(true);
+
+        // EXAMPLE WITHOUT PROGRESS STYLE ----------------------------------------------------------
+
+        LinearLayout indicatorContainerDefault = (LinearLayout) findViewById(R.id.indicator_default);
+
+        // Bind the view pager to the indicatorContainer
+        IndicatorBinder defaultInd = new IndicatorBinder().bind(this,
+                                viewPager,
+                                indicatorContainerDefault,
+                                selectedImage,
+                                unselectedImage);
+
+        // Set whether you want a progress style
+        defaultInd.setProgressStyle(false);
 
         // EXAMPLE WITH TABS -----------------------------------------------------------------------
 
