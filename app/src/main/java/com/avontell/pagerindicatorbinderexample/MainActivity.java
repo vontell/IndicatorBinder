@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // EXAMPLE WITH BASIC DRAWABLE RESOURCES ---------------------------------------------------
+        // INCLUDES PROGRESS STYLE -----------------------------------------------------------------
 
         // Grab the views
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_one);
@@ -37,11 +38,28 @@ public class MainActivity extends AppCompatActivity {
         int unselectedImage = R.drawable.indicator_unselected;
 
         // Bind the view pager to the indicatorContainer
-        IndicatorBinder.bind(this,
+        IndicatorBinder sample = new IndicatorBinder().bind(this,
                                   viewPager,
                                   indicatorContainer,
                                   selectedImage,
                                   unselectedImage);
+
+        // Set whether you want a progress style
+        sample.setProgressStyle(true);
+
+        // EXAMPLE WITHOUT PROGRESS STYLE ----------------------------------------------------------
+
+        LinearLayout indicatorContainerDefault = (LinearLayout) findViewById(R.id.indicator_default);
+
+        // Bind the view pager to the indicatorContainer
+        IndicatorBinder defaultInd = new IndicatorBinder().bind(this,
+                                viewPager,
+                                indicatorContainerDefault,
+                                selectedImage,
+                                unselectedImage);
+
+        // Set whether you want a progress style
+        defaultInd.setProgressStyle(false);
 
         // EXAMPLE WITH TABS -----------------------------------------------------------------------
 
@@ -56,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         tabViews.get(1).setText("Tab 2");
         tabViews.get(2).setText("Tab 3");
         tabViews.get(3).setText("Tab 4");
-        tabViews.get(4).setText("Tab 6");
+        tabViews.get(4).setText("Tab 5");
 
         // Set the requested colors
         int selectedBackgroundColor = R.color.tabBackgroundSelected;
@@ -67,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         // Grab the LinearLayout
         LinearLayout tabContainer = (LinearLayout) findViewById(R.id.tab_container);
 
-        IndicatorBinder.bindTextTabs(this,
+        new IndicatorBinder().bindTextTabs(this,
                                      viewPager,
                                      tabContainer,
                                      tabViews,
