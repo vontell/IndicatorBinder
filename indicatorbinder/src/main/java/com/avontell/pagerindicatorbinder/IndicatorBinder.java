@@ -10,8 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -23,10 +21,21 @@ import java.util.List;
  * A class that binds together a ViewPager with a view that supports
  * children. The position of the ViewPager will update the view
  * with the children such that the current position is indicated
- * @author Aaron Vontell
- * @version 0.2
+ * @author Aaron Vontell, Egli Hila
+ * @version 0.3
  */
 public class IndicatorBinder {
+
+    private ViewPager mViewPager;
+    private Context mContext;
+    private ViewGroup mContainer;
+    private LinearLayout mTabContainer;
+    private List<TextView> mTabViews;
+    private Drawable mSelected, mUnselected;
+    private int mBackgroundSelectedColor;
+    private int mBackgroundUnselectedColor;
+    private int mTextSelectedColor;
+    private int mTextUnselectedColor;
 
     private boolean isProgressStyle = false;
 
@@ -49,6 +58,74 @@ public class IndicatorBinder {
     }
 
     /**
+     * Initializes Binder for drawable indicators
+     */
+    private void initializeIndicator(){
+        mContainer.removeAllViews();
+        mViewPager.getAdapter().notifyDataSetChanged();
+        for(int i = 0; i < mViewPager.getAdapter().getCount(); i++) {
+            ImageView indImage = new ImageView(mContext);
+            if(isProgressStyle){
+                indImage.setImageDrawable((i <= mViewPager.getCurrentItem()) ? mSelected : mUnselected);
+            }
+            else {
+                indImage.setImageDrawable((i == mViewPager.getCurrentItem()) ? mSelected : mUnselected);
+            }
+            mContainer.addView(indImage);
+        }
+    }
+
+    /**
+     * Initializes Binder for tab indicators
+     */
+    private void initializeTabIndicator(){
+        mTabContainer.removeAllViews();
+        mViewPager.getAdapter().notifyDataSetChanged();
+        for(int i = 0; i < mTabViews.size(); i++) {
+
+            TextView tab = mTabViews.get(i);
+
+            // Make sure each TextView takes the right amount of space and gravity
+            tab.setLayoutParams(
+                    new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            tab.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
+            // Set colors of the TextView
+            if(i == mViewPager.getCurrentItem()) {
+                tab.setBackgroundColor(ContextCompat.getColor(mContext, mBackgroundSelectedColor));
+                tab.setTextColor(ContextCompat.getColor(mContext, mTextSelectedColor));
+            } else {
+                tab.setBackgroundColor(ContextCompat.getColor(mContext, mBackgroundUnselectedColor));
+                tab.setTextColor(ContextCompat.getColor(mContext, mTextUnselectedColor));
+            }
+
+            // Set Click Listeners of the tabs
+            final Integer pos = i;
+            tab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mViewPager.setCurrentItem(pos, true);
+                }
+            });
+
+            mTabContainer.addView(tab);
+        }
+    }
+
+    /**
+     * Refreshes all data for the binder
+     * Should be called when the data set changes
+     */
+    public void invalidate(){
+        if(mTabViews == null){
+            initializeIndicator();
+        } else {
+            initializeTabIndicator();
+        }
+
+    }
+
+    /**
      * Binds the viewPager to indicatorContainer, such that indicatorContainer has a list of
      * indicators, all displaying the drawable at indicatorOffResource except for the ith child,
      * where i is the position of the viewPager, and whose visual is given by indicatorOffResource.
@@ -66,25 +143,22 @@ public class IndicatorBinder {
                             @DrawableRes final int indicatorOnResource,
                             @DrawableRes final int indicatorOffResource) {
 
+        // Load global variables
+        mViewPager = viewPager;
+        mContext = context;
+        mContainer = indicatorContainer;
+
         // Load the indicator drawables
-        final Drawable selected = ContextCompat.getDrawable(context, indicatorOnResource);
-        final Drawable unselected = ContextCompat.getDrawable(context, indicatorOffResource);
+        mSelected = ContextCompat.getDrawable(context, indicatorOnResource);
+        mUnselected = ContextCompat.getDrawable(context, indicatorOffResource);
+
 
         // Load the container with indicators
-        final int numItems = viewPager.getAdapter().getCount();
-        indicatorContainer.removeAllViews();
-        for(int i = 0; i < numItems; i++) {
-            ImageView indImage = new ImageView(context);
-            if(i == viewPager.getCurrentItem()) {
-                indImage.setImageDrawable(selected);
-            } else {
-                indImage.setImageDrawable(unselected);
-            }
-            indicatorContainer.addView(indImage);
-        }
+        initializeIndicator();
 
         // Listener to detect when to update indicators
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -93,14 +167,14 @@ public class IndicatorBinder {
             @Override
             public void onPageSelected(int position) {
 
-                for(int i = 0; i < numItems; i++){
-                    ImageView indicator = (ImageView) indicatorContainer.getChildAt(i);
+                for(int i = 0; i < mViewPager.getAdapter().getCount(); i++){
+                    ImageView indicator = (ImageView) mContainer.getChildAt(i);
 
                     if(isProgressStyle){
-                        indicator.setImageDrawable((i <= position) ? selected : unselected);
+                        indicator.setImageDrawable((i <= position) ? mSelected : mUnselected);
                     }
                     else {
-                        indicator.setImageDrawable((i == position) ? selected : unselected);
+                        indicator.setImageDrawable((i == position) ? mSelected : mUnselected);
                     }
                 }
             }
@@ -137,6 +211,16 @@ public class IndicatorBinder {
             @ColorRes final int textSelectedColor,
             @ColorRes final int textUnselectedColor) {
 
+        // Load global variables
+        mViewPager = viewPager;
+        mContext = context;
+        mTabContainer = tabContainer;
+        mTabViews = tabViews;
+        mBackgroundSelectedColor = backgroundSelectedColor;
+        mBackgroundUnselectedColor = backgroundUnselectedColor;
+        mTextSelectedColor = textSelectedColor;
+        mTextUnselectedColor = textUnselectedColor;
+
         // Check that the correct number of tabs are available
         if(viewPager.getAdapter().getCount() != tabViews.size()) {
             throw new RuntimeException("Expected " + viewPager.getAdapter().getCount() +
@@ -144,35 +228,7 @@ public class IndicatorBinder {
         }
 
         // Load tabView into tabContainer
-        for(int i = 0; i < tabViews.size(); i++) {
-
-            TextView tab = tabViews.get(i);
-
-            // Make sure each TextView takes the right amount of space and gravity
-            tab.setLayoutParams(
-                    new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-            tab.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-
-            // Set colors of the TextView
-            if(i == viewPager.getCurrentItem()) {
-                tab.setBackgroundColor(ContextCompat.getColor(context, backgroundSelectedColor));
-                tab.setTextColor(ContextCompat.getColor(context, textSelectedColor));
-            } else {
-                tab.setBackgroundColor(ContextCompat.getColor(context, backgroundUnselectedColor));
-                tab.setTextColor(ContextCompat.getColor(context, textUnselectedColor));
-            }
-
-            // Set Click Listeners of the tabs
-            final Integer pos = Integer.valueOf(i);
-            tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    viewPager.setCurrentItem(pos, true);
-                }
-            });
-
-            tabContainer.addView(tab);
-        }
+        initializeTabIndicator();
 
         // Set listener for ViewPager changes
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -184,14 +240,14 @@ public class IndicatorBinder {
             @Override
             public void onPageSelected(int position) {
 
-                for(int i = 0; i < tabViews.size(); i++){
-                    TextView tab = (TextView) tabContainer.getChildAt(i);
+                for(int i = 0; i < mTabViews.size(); i++){
+                    TextView tab = (TextView) mTabContainer.getChildAt(i);
                     if(i == position) {
-                        tab.setBackgroundColor(ContextCompat.getColor(context, backgroundSelectedColor));
-                        tab.setTextColor(ContextCompat.getColor(context, textSelectedColor));
+                        tab.setBackgroundColor(ContextCompat.getColor(mContext, mBackgroundSelectedColor));
+                        tab.setTextColor(ContextCompat.getColor(mContext, mTextSelectedColor));
                     } else {
-                        tab.setBackgroundColor(ContextCompat.getColor(context, backgroundUnselectedColor));
-                        tab.setTextColor(ContextCompat.getColor(context, textUnselectedColor));
+                        tab.setBackgroundColor(ContextCompat.getColor(mContext, mBackgroundUnselectedColor));
+                        tab.setTextColor(ContextCompat.getColor(mContext, mTextUnselectedColor));
                     }
                 }
             }

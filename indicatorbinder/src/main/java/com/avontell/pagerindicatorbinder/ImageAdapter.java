@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.List;
+
 /**
  * Class that serves ImageViews for a view pager, for effects such as a carousel
  * @author Aaron Vontell
@@ -14,21 +16,21 @@ import android.widget.ImageView;
 public class ImageAdapter extends PagerAdapter{
 
     Context context;
-    int[] imageResources;
+    List<Integer> imageResources;
 
     /**
      * Create an adapter that handles a slideshow of images
      * @param context The calling activity
      * @param imageResources The images to use within the slideshow, as drawable resources
      */
-    public ImageAdapter(Context context, int[] imageResources) {
+    public ImageAdapter(Context context, List<Integer> imageResources) {
         this.context = context;
         this.imageResources = imageResources;
     }
 
     @Override
     public int getCount() {
-        return imageResources.length;
+        return imageResources.size();
     }
 
     @Override
@@ -44,7 +46,7 @@ public class ImageAdapter extends PagerAdapter{
         //If this is an image, add an ImageView to the pager
         //Otherwise, add the extra view to the pager
         ImageView itemView = new ImageView(context);
-        itemView.setImageResource(imageResources[position]);
+        itemView.setImageResource(imageResources.get(position));
         itemView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         container.addView(itemView);
         result = itemView;
