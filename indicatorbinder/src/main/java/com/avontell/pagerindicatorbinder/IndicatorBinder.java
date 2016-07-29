@@ -5,16 +5,11 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -26,8 +21,8 @@ import java.util.List;
  * A class that binds together a ViewPager with a view that supports
  * children. The position of the ViewPager will update the view
  * with the children such that the current position is indicated
- * @author Aaron Vontell
- * @version 0.2
+ * @author Aaron Vontell, Egli Hila
+ * @version 0.3
  */
 public class IndicatorBinder {
 

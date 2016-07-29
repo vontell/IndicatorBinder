@@ -14,6 +14,11 @@ import com.avontell.pagerindicatorbinder.IndicatorBinder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MainActivity that provides examples for using the IndicatorBinder
+ * @author Aaron Vontell, Egli Hila
+ * @version 0.3
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -33,7 +33,7 @@ allprojects {
 2. Add the dependency
 ```grrovy
 dependencies {
-        compile 'com.github.vontell:IndicatorBinder:v0.1.2-alpha'
+        compile 'com.github.vontell:IndicatorBinder:v0.1.3-alpha'
 }
 ```
 
@@ -43,14 +43,15 @@ To create the indicators for a ViewPager, simply define in your layout a ViewPag
 based container that will hold your indicators. Then use the following lines of code to connect the
 ViewPager to the container:
 
-`IndicatorBinder.bind(context, viewPager, viewGroup, R.drawable.selectedRes, R.drawable.unselectedRes);`
+`Pretty examples coming soon. See full documentation link below.`
 
 This will populate the viewGroup with indicators, and presto! You have indicators for your ViewPager.
 
 **NEW**: You can now add **text tabs** to your ViewPagers with this simple method (custom view coming soon):
-`IndicatorBinder.bindTextTabs(context, viewPager, tabContainer, tabViews, R.color.selectedBackgroundColor, R.color.unselectedBackgroundColor, R.color.selectedTextColor, R.color.unselectedTextColor);`
 
-NOTE: Full documentation can be found at [http://www.avontell.com/indbinder/documentation/index.html](http://www.avontell.com/indbinder/documentation/index.html)!
+`Pretty example coming soon.`
+
+**NOTE**: Full documentation can be found at [http://www.avontell.com/indbinder/documentation/index.html](http://www.avontell.com/indbinder/documentation/index.html)!
 
 ## License
 The MIT License (MIT)
