@@ -40,18 +40,7 @@ dependencies {
 ## Usage
 
 To create the indicators for a ViewPager, simply define in your layout a ViewPager and a ViewGroup-
-based container that will hold your indicators. Then use the following lines of code to connect the
-ViewPager to the container:
-
-`Pretty examples coming soon. See full documentation link below.`
-
-This will populate the viewGroup with indicators, and presto! You have indicators for your ViewPager.
-
-**NEW**: You can now add **text tabs** to your ViewPagers with this simple method (custom view coming soon):
-
-`Pretty example coming soon.`
-
-**NOTE**: Full documentation can be found at [http://www.avontell.com/indbinder/documentation/index.html](http://www.avontell.com/indbinder/documentation/index.html)!
+based container that will hold your indicators. See examples within the `app` folder.
 
 ## License
 The MIT License (MIT)
